@@ -4,7 +4,7 @@
 #include <ctype.h>
 #include <stdbool.h>
 #include <math.h>
-
+#define test 1
 #define NUMOFCOEFS 13
 #define DEFAULTHEIGHT 1.5
 #define MAXITERATIONS 13

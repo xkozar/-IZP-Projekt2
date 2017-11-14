@@ -163,7 +163,7 @@ void checkMeasurementArguments(int argc, char *argv[]){
    double deviceHeight = DEFAULTHEIGHT;
    bool betaIncluded = false;
    //printf("%d", strcmp(argv[1], "-m"));
-   if(argc == 6 && !stricmp(argv[1], "-c") && !stricmp(argv[3], "-m")){
+   if(argc == 6 && !strcmp(argv[1], "-c") && !strcmp(argv[3], "-m")){
       if(stringIsFloat(argv[2]) && stringIsFloat(argv[4]) && stringIsFloat(argv[5])){
          alpha = atof(argv[4]);
          beta = atof(argv[5]);
@@ -175,7 +175,7 @@ void checkMeasurementArguments(int argc, char *argv[]){
          exit(1);
       }
    }
-   else if(argc == 5 && !stricmp(argv[1], "-c") && !stricmp(argv[3], "-m")){
+   else if(argc == 5 && !strcmp(argv[1], "-c") && !strcmp(argv[3], "-m")){
       if(stringIsFloat(argv[2]) && stringIsFloat(argv[4])){
          alpha = atof(argv[4]);
          deviceHeight = atof(argv[2]);
@@ -190,7 +190,7 @@ void checkMeasurementArguments(int argc, char *argv[]){
       beta = atof(argv[3]);
       betaIncluded = true;
    }
-   else if(argc == 3 && !stricmp(argv[1], "-m") && stringIsFloat(argv[2])){
+   else if(argc == 3 && !strcmp(argv[1], "-m") && stringIsFloat(argv[2])){
       alpha = atof(argv[2]);
    }
    else{

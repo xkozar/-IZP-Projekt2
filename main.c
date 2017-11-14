@@ -1,3 +1,9 @@
+/**********************************************************
+ * proj2 Iteracne vypocty
+ * author: Tomas Kozar xkozar02
+ * last edited: 14.november 2017
+ **********************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -9,6 +15,7 @@
 #define DEFAULTHEIGHT 1.5
 #define MAXITERATIONS 13
 #define MEASUREITERATIONS 13
+
 /**
  * Checks whether passed string is float
  * @param [in] str
@@ -99,8 +106,8 @@ double cfrac_tan(double angle, unsigned int n){
 
 /**
  * Prints individual calculations and their difference
- * @param degree used for calculations of tangens
- * @param iterations number of iterations used for methods
+ * @param [in] degree used for calculations of tangens
+ * @param [in] iterations number of iterations used for methods
  */
 void printValues(double degree, int iterations){
    double taylorTan = taylor_tan(degree, iterations);
@@ -113,9 +120,9 @@ void printValues(double degree, int iterations){
 
 /**
  * Cycles throu range of iterations and prints individual calculations and their differences
- * @param degree used for caltulations of tangens
- * @param N first number of iterations
- * @param M last number of iterations
+ * @param [in] degree used for caltulations of tangens
+ * @param [in] N first number of iterations
+ * @param [in] M last number of iterations
  */
 void compareTanCalcs(double degree, int N, int M){
    if(N < 1 || M < N) {
@@ -126,17 +133,16 @@ void compareTanCalcs(double degree, int N, int M){
    for(int i = N; i <= M; i++){
       printValues(degree, i);
    }
-
-
 }
 
 /**
  * Calculates and prints results of measurements
- * @param alpha alpha angle used for calculating distance of measurement device from object
- * @param beta beta angle used for calculating objects height
- * @param deviceHeight height in which is device positioned
- * @param betaIncluded tells if we also do calculation for beta
+ * @param [in] alpha alpha angle used for calculating distance of measurement device from object
+ * @param [in] beta beta angle used for calculating objects height
+ * @param [in] deviceHeight height in which is device positioned
+ * @param [in] betaIncluded tells if we also do calculation for beta
  */
+
 void measurement(double alpha, double beta, double deviceHeight, bool betaIncluded){
    double d = deviceHeight/cfrac_tan(alpha, MEASUREITERATIONS);
    printf("%.10e\n", d);
@@ -148,8 +154,8 @@ void measurement(double alpha, double beta, double deviceHeight, bool betaInclud
 
 /**
  * Checks and evaluate in-line arguments used for measurement
- * @param argc number of arguments
- * @param argv 2d array of chars
+ * @param [in] argc number of arguments
+ * @param [in] argv 2d array of chars
  */
 void checkMeasurementArguments(int argc, char *argv[]){
    double alpha;

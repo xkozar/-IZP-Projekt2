@@ -91,9 +91,6 @@ double taylor_tan(double angle, unsigned int n){
  * @return tangens of passed angle
  */
 double cfrac_tan(double angle, unsigned int n){
-   if(n > MAXITERATIONS)
-      n = MAXITERATIONS;
-
    double a;
    const double b = angle*angle;
    double result = 0.;
@@ -114,7 +111,7 @@ void printValues(double degree, int iterations){
    double cfracTan = cfrac_tan(degree, iterations);
    double mathTan = tan(degree);
 
-   printf("%d %.10e %.10e %.10e %.10e %.10e\n", iterations, mathTan, taylorTan,
+   printf("%d %e %e %e %e %e\n", iterations, mathTan, taylorTan,
           fabs(mathTan-taylorTan), cfracTan, fabs(mathTan-taylorTan));
 }
 
@@ -125,11 +122,13 @@ void printValues(double degree, int iterations){
  * @param [in] M last number of iterations
  */
 void compareTanCalcs(double degree, int N, int M){
+   if(M > MAXITERATIONS)
+      fprintf(stderr, "Arguement M too high");
    if(N < 1 || M < N) {
       fprintf(stderr, "Wrong values of arguements N and/or M");
       exit(1);
    }
-   printf("%f\n", degree);
+   printf("%.10e\n", degree);
    for(int i = N; i <= M; i++){
       printValues(degree, i);
    }

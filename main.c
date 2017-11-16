@@ -14,7 +14,7 @@
 #define NUMOFCOEFS 13
 #define DEFAULTHEIGHT 1.5
 #define MAXITERATIONS 13
-#define MEASUREITERATIONS 13
+#define MEASUREITERATIONS 10
 
 /**
  * Checks whether passed string is float
@@ -112,7 +112,7 @@ void printValues(double degree, int iterations){
    double mathTan = tan(degree);
 
    printf("%d %e %e %e %e %e\n", iterations, mathTan, taylorTan,
-          fabs(mathTan-taylorTan), cfracTan, fabs(mathTan-taylorTan));
+          fabs(mathTan-taylorTan), cfracTan, fabs(mathTan-cfracTan));
 }
 
 /**

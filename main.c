@@ -50,6 +50,39 @@ bool stringIsNumber(char *str){
 }
 
 /**
+ * Prints help
+ */
+void printHelp(){
+   printf("Program is used to calculate height and distance of measured object using \n"
+                  "implemented tangens functions.\n"
+                  "Running program: \n"
+                  "--help -> Prints guide for program use.\n"
+                  "-----------------------------------------------------------------------------\n"
+                  "--tan A N M -> Prints values of calculated tangenses and their coparision \n"
+                  "to tangens from math library in defined range of iterations.\n"
+                  "Arguements:\n"
+                  "A -> Angle of used for calculations in radians.\n"
+                  "N -> Start of iteration range.\n"
+                  "M -> End of iteration range.   0 < N <= M < 14\n"
+                  "Output:\n"
+                  "I M T TE C CE\n"
+                  "I -> Iterations used for calculation.\n"
+                  "M -> Tangens calculated using math library.\n"
+                  "T -> Tangens calculated using Taylor's polynome.\n"
+                  "TE -> Absolute difference between M and T\n"
+                  "C -> Tangens calculated using continued fraction.\n"
+                  "CE -> Absolute difference between M and C\n"
+                  "-----------------------------------------------------------------------------\n"
+                  "[-c X] -m A [B] -> Prints calculated distance of measured object\n"
+                  "Arguements:\n"
+                  "-c -> [Optional] Sets height of measuring device.\n"
+                  "X -> [Optional] Value of height in meters. Implicitely 1.5.\n"
+                  "-m -> Calculates distance of object.\n"
+                  "A -> Angle of alpha used for calculations in radians.\n"
+                  "B -> [Optional] Value of beta in radians used for calculation of objects height.");
+}
+
+/**
  * Calculates next term in calculated polynomial
  * @param [in] term current term
  * @param [in] angle angle used for calculation
@@ -135,7 +168,7 @@ int compareTanCalcs(double degree, int N, int M){
       fprintf(stderr, "Arguement N must be > than 0");
       return 1;
    }
-   printf("%.10e\n", degree);
+
    for(int i = N; i <= M; i++){
       printValues(degree, i);
    }
@@ -160,7 +193,7 @@ int measurement(double alpha, double beta, double deviceHeight, bool betaInclude
       return 1;
    }
    if(deviceHeight <= 0 || deviceHeight > 100){
-      fprintf(stderr, "Invalid value of arguement C");
+      fprintf(stderr, "Invalid value of arguement X");
       return 1;
    }
 
@@ -228,31 +261,7 @@ int checkMeasurementArguments(int argc, char *argv[]){
 int main(int argc, char *argv[]) {
 
    if(argc == 2 && !strcmp(argv[1], "--help")) {
-      printf("Program is used to calculate height and distance of measured object using implemented tangens functions.\n"
-                     "Running program: \n"
-                     "--help -> Prints guide for program use.\n"
-                     "-----------------------------------------------------------------------\n"
-                     "--tan A N M -> Prints values of calculated tangenses and their coparision to tangens from math library in defined range of iterations.\n"
-                     "Arguements:\n"
-                     "A -> Angle of used for calculations in radians.\n"
-                     "N -> Start of iteration range.\n"
-                     "M -> End of iteration range.   0 < N <= M < 14\n"
-                     "Output:\n"
-                     "I M T TE C CE\n"
-                     "I -> Iterations used for calculation.\n"
-                     "M -> Tangens calculated using math library.\n"
-                     "T -> Tangens calculated using Taylor's polynome.\n"
-                     "TE -> Absolute difference between M and T\n"
-                     "C -> Tangens calculated using continued fraction.\n"
-                     "CE -> Absolute difference between M and C\n"
-                     "-------------------------------------------------------\n"
-                     "[-c X] -m A [B] -> Prints calculated distance of measured object\n"
-                     "Arguements:\n"
-                     "-c -> [Optional] Sets height of measuring device.\n"
-                     "X -> [Optional] Value of height in meters. Implicitely 1.5.\n"
-                     "-m -> Calculates distance of object.\n"
-                     "A -> Angle of alpha used for calculations in radians.\n"
-                     "B -> [Optional] Value of beta in radians used for calculation of objects height.");
+      printHelp();
       return 0;
    }
    else if(argc == 5 && !strcmp(argv[1], "--tan")) {
@@ -261,7 +270,7 @@ int main(int argc, char *argv[]) {
             return 1;
       }
       else {
-         fprintf(stderr, "Wrong format of arguement/s A,N and/or N");
+         fprintf(stderr, "Wrong values of arguement/s A, N and/or M");
          return 1;
       }
    }
